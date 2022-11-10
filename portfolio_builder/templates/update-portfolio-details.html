@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Data</title>
+    <link rel="shortcut icon" href="../static/images/logo.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@700&display=swap" rel="stylesheet">
+    <link id="themecss" rel="stylesheet" type="text/css" href="//www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+
+    <style>
+        body{
+            background-color: white;
+        }
+        .card{
+            width: 40rem;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 5%;
+            margin-bottom:10%;
+        }
+
+         @media only screen and (min-width: 340px) and (max-width: 400px) {
+             .card{
+                width:20rem;
+                margin-top:10%;
+             }
+        }
+         @media only screen and (min-width: 400px) and (max-width: 500px) {
+             .card{
+                width:22rem;
+                margin-top:10%;
+             }
+        }
+         @media only screen and (min-width: 500px) and (max-width: 600px) {
+             .card{
+                width:25rem;
+                margin-top:10%;
+             }
+        }
+        .message{
+             margin-top:1%;
+             width:100%;
+         }
+         .navbar a{
+                    font-family: 'Anonymous Pro', monospace;
+                    font-size: 25px;
+         }
+         @media only screen and (min-width: 280px) and (max-width: 340px) {
+                  .navbar a{
+                    font-size:18px;
+                  }
+                 }
+                  @media only screen and (min-width: 340px) and (max-width: 400px) {
+                       .navbar a{
+                    font-size:20px;
+                  }
+                 }
+            .bootstrap-tagsinput {
+                margin: 0;
+                width: 100%;
+                padding: 0.5rem 0.75rem 0;
+                font-size: 1rem;
+                line-height: 1.25;
+                transition: border-color 0.15s ease-in-out;
+            }
+
+            &.has-focus {
+            background-color: #fff;
+            border-color: #5cb3fd;
+            }
+
+	.label-info {
+		display: inline-block;
+		background-color: #636c72;
+		padding: 0 .4em .15em;
+		border-radius: .25rem;
+		margin-bottom: 0.4em;
+	}
+
+	input {
+		margin-bottom: 0.5em;
+	}
+}
+
+.bootstrap-tagsinput .tag [data-role="remove"]:after {
+	content: '\00d7';
+}
+
+#css-dropdown
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 300px;
+    height: 42px;
+    margin: 100px auto 0 auto;
+}
+.circle{
+  width:5%;
+  border: 1px solid black;
+  background-color: #3498db;
+}
+.circle h3{
+  text-align:center;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  padding:5px;
+}
+
+    </style>
+</head>
+<body>
+
+<!--    {% with messages = get_flashed_messages(with_categories=true) %}-->
+<!--        {% if messages %}-->
+<!--            {% for message in messages %}-->
+<!--                {% if flag==1 %}-->
+<!--                    <div class="alert alert-success message" align="center"><i class="bi bi-patch-check"></i> <strong>{{ message[1] }}</strong></div>-->
+<!--                    <div align="center"><a href="/add_job" >Add more?</a></div>-->
+<!--                {% else %}-->
+<!--                    <div class="alert alert-danger message" align="center"><i class="bi bi-patch-check"></i> <strong>{{ message[1] }}</strong></div>-->
+<!--                    <div align="center"><a href="/add_job" >Add more?</a></div>-->
+<!--                {% endif %}-->
+<!--            {% endfor %}-->
+<!--        {% endif %}-->
+<!--    {% endwith %}-->
+
+
+    <div class="card">
+            <div class="card-body">
+                <form action = "update_portfolio_details" method = "POST" enctype="multipart/form-data">
+                    
+                    <div class="form-group">
+                        <label>Template ID:</label>
+                        <input type="text" class="form-control" name="template_id" value={{ template_id }} readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>User Name:</label>
+                        <input type="text" class="form-control" name="user_name" value={{ user_name }} readonly>
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                        </div>
+                        <input type="text" class="form-control" name="name" value="{{ portfolio_details['name'] }}">
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-gender-male"></i></div>
+                        </div>
+<!--                        <input type="text" class="form-control" name="mobile_no" placeholder="Enter your Gender">-->
+                        <select id="inputState" name='gender' class="form-control">
+                            <option selected value="{{ portfolio_details['gender'] }}">{{ portfolio_details['gender'] }}</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="None">Other</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-briefcase-fill"></i></div>
+                        </div>
+                        <input type="text" class="form-control" name="current_role" value="{{ portfolio_details['current_role'] }}">
+                    </div>
+                    <div class="form-group">
+                        <small id="emailHelp" class="form-text text-muted">Example: Student, Software Engineer</small>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-envelope"></i></div>
+                        </div>
+                        <input type="text" class="form-control" name="email" value="{{ portfolio_details['email'] }}">
+                    </div>
+
+                   <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-telephone-fill"></i></div>
+                        </div>
+                        <input type="text" class="form-control" name="mobile_no" value="{{ portfolio_details['mobile_no'] }}">
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-house-fill"></i></div>
+                        </div>
+                        <input type="text" class="form-control" name="city" value="{{ portfolio_details['city'] }}">
+                    </div>
+                    <br/>
+                    <h4>Social Media Links:</h4>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-linkedin"></i></div>
+                        </div>
+                        <input type="text" class="form-control" name="linkedin" value="{{ portfolio_details['linkedin'] }}">
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-github"></i></div>
+                        </div>
+                        <input type="text" class="form-control" name="github" value="{{ portfolio_details['github'] }}">
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-instagram"></i></div>
+                        </div>
+                        <input type="text" class="form-control" name="instagram" value="{{ portfolio_details['instagram'] }}">
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-twitter"></i></div>
+                        </div>
+                        <input type="text" class="form-control" name="twitter" value="{{ portfolio_details['twitter'] }}">
+                    </div>
+                    <br/>
+
+                    <!-------------------------------Uploads: ---------------------------------------->
+<!--                    <h5>Uploads:</h5>-->
+<!--                    <div class="custom-file">-->
+<!--                        <input type="file" class="custom-file-input" name="resume" accept=".pdf"  required>-->
+<!--                        <label class="custom-file-label" >Upload Resume...</label>-->
+<!--                    </div>&ensp;-->
+<!--                    <div class="custom-file">-->
+<!--                        <input type="file" class="custom-file-input" name="user_img" accept="image/png, image/jpeg" required>-->
+<!--                        <label class="custom-file-label" >Upload your Image...</label>-->
+<!--                    </div>&ensp;-->
+
+                    <!------------------------------- About---------------------------------------->
+                    <h5>About you:</h5>
+                    <div class="form-group">
+                        <textarea type="text" class="form-control"  name="about_you" required="required" rows="10" value="{{ portfolio_details['about_you'] }}">{{ portfolio_details['about_you'] }}"</textarea>
+                    </div>
+
+                    <!------------------------------- Education---------------------------------------->
+                    <h5>Education:</h5>
+                    <div class="panel panel-default">
+                     <div class="panel-body">
+                         {% for i in range(edu_len) %}
+                       <div class="circle"><h3>{{ i+1 }}</h3></div>
+                        <div class="form-group">
+                           <input type="text" class="form-control"  name="Schoolname[]" value="{{ portfolio_details['school_name'][i] }}">
+                        </div>
+                        <div class="form-group">
+                           <input type="text" class="form-control"  name="Major[]" value="{{ portfolio_details['major'][i] }}">
+                        </div>
+                        <div class="form-group">
+                           <input type="text" class="form-control"  name="Degree[]" value="{{ portfolio_details['degree'][i] }}">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="StartDate[]" id="edsdatepicker1" value="{{ portfolio_details['start_date'][i] }}">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="EndDate[]" id="edldatepicker1" value="{{ portfolio_details['end_date'][i] }}">
+                        </div>
+                        <div class="form-group">
+                           <input type="text" class="form-control" name="GPA[]" value="{{ portfolio_details['gpa'][i] }}">
+                        </div>
+                    {% endfor %}
+                     </div>
+                  </div>
+                  <div class="clear"></div>&ensp;
+                    <!------------------------------- Education END---------------------------------------->
+
+                     <!------------------------------- Experience---------------------------------------->
+                    <h5>Experience:</h5> <br/>
+                    <div class="panel panel-default">
+                     <div class="panel-body">
+                         {% for i in range(exp_len) %}
+                       <div class="circle"><h3>{{ i+1 }}</h3></div>
+                        <div class="form-group">
+                           <input type="text" class="form-control"  name="Companyname[]" value="{{ portfolio_details['company_name'][i] }}">
+                        </div>
+                        <div class="form-group">
+                           <input type="text" class="form-control"  name="Role[]" value="{{ portfolio_details['role'][i] }}">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="ExpStartDate[]" id="exsdatepicker1" value="{{ portfolio_details['exp_start_date'][i] }}">
+                        </div>
+                        <div class="form-group">
+                           <input type="text" class="form-control" name="ExpLastDate[]" id="exldatepicker1" value="{{ portfolio_details['exp_last_date'][i] }}">
+                        </div>
+                         {% if portfolio_details['current_job_link'][i] == 'on' %}
+                         <div class="form-group form-check">
+                             <input type="checkbox" class="form-check-input" name="CurrentJobCheck[]" value="{{ portfolio_details['current_job_link'][i] }}" checked/>
+                             <label class="form-check-label">I'm currently working in this role.</label>
+                         </div>
+                         {% else %}
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" name="CurrentJobCheck[]" value="{{ portfolio_details['current_job_link'][i] }}"/>
+                                <label class="form-check-label">I'm currently working in this role.</label>
+                            </div>
+                         {% endif %}
+                         <div class="form-group">
+                            <textarea type="text" class="form-control" name="DescExp[]" value="{{ portfolio_details['desc_exp'][i] }}" rows = 8 required>{{ portfolio_details['desc_exp'][i] }}</textarea>
+                        </div><br/>
+                         {% endfor %}
+                     </div>
+                  </div>
+                  <div class="clear"></div>
+                    <!------------------------------- Experience END---------------------------------------->
+
+                    <!------------------------------- Projects---------------------------------------->
+                    <h5>Projects:</h5><br/>
+                    <div class="panel panel-default">
+                     <div class="panel-body">
+                        {% for i in range(project_len) %}
+                         <div class="circle"><h3>{{ i+1 }}</h3></div>
+                        <div class="form-group">
+                           <input type="text" class="form-control"  name="Projectname[]" value="{{ portfolio_details['project_name'][i] }}" >
+                        </div>
+                        <div class="form-group">
+                           <input type="text" class="form-control"  name="Domain[]" value="{{ portfolio_details['domain'][i] }}" >
+                        </div>
+                        <div class="form-group">
+                           <input type="text" class="form-control"  name="ProjectLink[]" value="{{ portfolio_details['project_link'][i] }}" >
+                        </div>
+                        <div class="form-group">
+                            <textarea type="text" class="form-control" name="DescProject[]" value="{{ portfolio_details['desc_project'][i] }}" >{{ portfolio_details['desc_project'][i] }}</textarea>
+                        </div><br/>
+                        {% endfor %}
+                     </div>
+                  </div>
+                  <div class="clear"></div>&ensp;
+
+                    <!-------------------------------------------------SKILLS------------------------------------->
+                    <h5>Skills:</h5>
+                    <div class="panel panel-default">
+                     <div class="panel-body">
+                        {% for i in range(skills_len) %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="skills[]" value="{{ portfolio_details['skills_list'][i] }},{{ portfolio_details['skills_scores'][i] }}">
+                        </div>
+                        {% endfor %}
+                     </div>
+                  </div>
+
+                    <!--------------------------Interests section------------------------------->
+                     <br/><h5>Interests: </h5>
+                    <h6>Choose you Interests again from the below drop down:</h6>
+                    <section>
+                        <div class="row d-flex justify-content-center mt-100">
+                            <div class="col-md-12 form-group">
+                                <select id="choices" class="form-select" name="interests_list[]" placeholder="Select up to 6 Interests" multiple>
+                                    {% for i in range(interests_len) %}
+                                    <option value="{{ i }}">{{ interests[i] }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                        </div>
+                        <br><br>
+                    </section>
+
+                    <button type="submit" value="submit" class="btn btn-primary" style="margin-left: 42%;">Submit</button>
+                  </form>
+            </div>
+    </div>
+        <script>
+             $(document).ready(function(){
+                 var multipleCancelButton = new Choices('#choices', {
+                 removeItemButton: true,
+                 maxItemCount:6,
+                 searchResultLimit:10,
+                 renderChoiceLimit:10
+                 });
+             });
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

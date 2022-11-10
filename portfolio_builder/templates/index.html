@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      
+      <meta name="viewport" content="width=device-width,initial-scale=1.0">
+       <meta charset="UTF-8">
+      <title>Portfolio Website Builder</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--    header files-->
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+      <link rel="stylesheet" href="{{ url_for('static', filename='index/fonts/icomoon/style.css') }}" >
+      <link rel="stylesheet"  href="{{ url_for('static', filename='index/css/owl.carousel.min.css') }}" >
+      <link rel="stylesheet" href="{{ url_for('static', filename='index/css/bootstrap.min.css') }}" >
+      <link rel="stylesheet" href="{{ url_for('static', filename='index/css/style.css') }}" >
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+      <style>
+
+         .card-header h3{
+            border: 2px solid #000;
+            border-radius: 50%;
+            text-align: center;
+            color: #000;
+            font: 32px Arial, sans-serif;
+            float:right;
+            width: 44px;
+            height: 44px;
+           background: #fff;
+         }
+         .card-body img{
+            width:20%;
+         }
+   </style>
+   </head>
+   <body>
+
+
+   {% if login_success==1 %}
+       <div class="login-msg alert alert-success alert-dismissible" id="login-success" align="center">
+           <strong>Logged in successfully!</strong>
+       </div>
+   {% endif %}
+   {% if logout_success==1 %}
+       <div class="login-msg alert alert-success alert-dismissible" id="logout-success" align="center">
+           <strong>Logout successfully!</strong>
+       </div>
+   {% endif %}
+      {% if no_account==1 %}
+       <div class="login-msg alert alert-danger alert-dismissible" id="no_account" align="center">
+           <strong>Create account first to login.</strong>
+       </div>
+   {% endif %}
+<script>
+
+    $(function() {
+          setTimeout(function() { $("#login-success").fadeOut(1500); }, 5000);
+    })
+
+</script>
+   <script>
+
+    $(function() {
+          setTimeout(function() { $("#logout-success").fadeOut(1500); }, 5000);
+    })
+
+</script>
+      <script>
+
+    $(function() {
+          setTimeout(function() { $("#no_account").fadeOut(1500); }, 5000);
+    })
+
+</script>
+      <div class="site-mobile-menu">
+         <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+               <span class="icon-close2 js-menu-toggle"></span>
+            </div>
+         </div>
+         <div class="site-mobile-menu-body"></div>
+      </div>
+
+      <header class="site-navbar" role="banner">
+         <div class="container">
+            <div class="row align-items-center">
+               <div class="col-11 col-xl-2 head-text">
+                  <h1 class="mb-0 site-logo"><a href="index.html" class="mb-0"><b>Portfolio Builder</b></a></h1>
+               </div>
+               <div class="col-12 col-md-10 d-none d-xl-block">
+                  <nav class="site-navigation position-relative text-right" role="navigation">
+                     <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block menu-list">
+                        <li class="active"><a href="{{ url_for('home') }}"><span>Home</span></a></li>
+                        <li><a href="{{ url_for('dashboard') }}"><span>Dashboard</span></a></li>
+                         {% if login==1 %}
+                          <li><a href="{{ url_for('login') }}"><span>Login</span></a></li>
+                         {% endif %}
+                         {% if logout==1 %}
+                         <li><a href="{{ url_for('logout') }}"><span>Logout</span></a></li>
+                         {% endif %}
+                         <li><a href="{{ url_for('create_account') }}"><span>Create Account</span></a></li>
+                         <li><a href="{{ url_for('admin') }}"><span>Admin</span></a></li>
+                     </ul>
+                  </nav>
+               </div>
+               <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3 menu-toggler" style="position: relative; top: 3px;">
+                   <a class="site-menu-toggle js-menu-toggle text-white" data-class="menu-active" >
+                       <span class="icon-menu h3"></span>
+                   </a>
+               </div>
+            </div>
+         </div>
+      </header>
+
+      <div class="hero" >
+
+            <div class="header-text">
+                <h1>Don’t know HTML or CSS? No problem!</h1>
+                <h5>With Portfolio Builder, create your website in three simple steps!</h5>
+               <button type="button" href="#templates" class="btn btn-primary">Get started free</button>
+            </div>
+            <img src={{url_for("static", filename="index/images/11.png")}} alt="Avatar">
+      </div>
+
+      <div class="template-header" id="templates"><h1>Portfolio Templates</h1></div>
+
+<div class="container template-box">
+	<div class="row">
+		<div class="col">
+			<div class="weather-card one">
+				<div class="top">
+					<div class="wrapper">
+                        <img src={{url_for("static", filename="index/images/template1.png")}} alt="Avatar">
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="wrapper">
+                        <a href="{{ url_for('demo_portfolio', template_id=1) }}"><button type="button" class="btn btn-primary btn-sm">View Demo <i class="bi bi-box-arrow-up-right"></i></button></a>
+                        <a href="{{ url_for('use_template', template_id=1) }}"><button type="button" class="btn btn-secondary btn-sm" >Use</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col">
+			<div class="weather-card rain">
+				<div class="top">
+					<div class="wrapper">
+                        <img src={{url_for("static", filename="index/images/template2.png")}} alt="Avatar">
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="wrapper">
+                        <a href="{{ url_for('demo_portfolio', template_id=2) }}"><button type="button" class="btn btn-primary btn-sm">View Demo <i class="bi bi-box-arrow-up-right"></i></button></a>
+                        <a href="{{ url_for('use_template', template_id=2) }}"><button type="button" class="btn btn-secondary btn-sm" >Use</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+      <script src="{{ url_for('static', filename='index/js/jquery-3.3.1.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='index/js/popper.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='index/js/bootstrap.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='index/js/jquery.sticky.js') }}"></script>
+      <script src="{{ url_for('static', filename='index/js/main.js') }}"></script>
+   </body>
+</html>
